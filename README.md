@@ -1,4 +1,4 @@
-A Tool for SystemBar include StatusBar and NavigationBar.
+A Helper for SystemBar include StatusBar and NavigationBar.
 
 ## Demo
 ### StatusBar Tint and Immersive
