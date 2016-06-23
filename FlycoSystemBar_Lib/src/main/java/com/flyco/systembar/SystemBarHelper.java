@@ -240,6 +240,11 @@ public class SystemBarHelper {
         setStatusBarDarkMode(activity.getWindow());
     }
 
+    /** 设置状态栏lightMode,字体颜色及icon变白(目前支持MIUI6以上,Flyme4以上,Android M以上) */
+    public static void setStatusBarLightMode(Activity activity) {
+        setStatusBarLightMode(activity.getWindow());
+    }
+
     /** 设置状态栏darkMode,字体颜色及icon变黑(目前支持MIUI6以上,Flyme4以上,Android M以上) */
     public static void setStatusBarDarkMode(Window window) {
         if (isFlyme4Later()) {
@@ -248,6 +253,17 @@ public class SystemBarHelper {
             setStatusBarDarkModeForMIUI6(window, true);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             setStatusBarDarkModeForM(window);
+        }
+    }
+
+    /** 设置状态栏lightMode,字体颜色及icon变白(目前支持MIUI6以上,Flyme4以上,Android M以上) */
+    public static void setStatusBarLightMode(Window window) {
+        if (isFlyme4Later()) {
+            setStatusBarDarkModeForFlyme4(window, false);
+        } else if (isMIUI6Later()) {
+            setStatusBarDarkModeForMIUI6(window, false);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            setStatusBarDarkModeForM(window, false);
         }
     }
 
@@ -265,7 +281,21 @@ public class SystemBarHelper {
         systemUiVisibility |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
         window.getDecorView().setSystemUiVisibility(systemUiVisibility);
     }
+    /** android 6.0设置字体颜色 可控制深色或浅色*/
+    @TargetApi(Build.VERSION_CODES.M)
+    public static void setStatusBarDarkModeForM(Window window, boolean dark) {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.TRANSPARENT);
 
+        int systemUiVisibility = window.getDecorView().getSystemUiVisibility();
+        if (dark) {
+            systemUiVisibility |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        } else {
+            systemUiVisibility &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        }
+        window.getDecorView().setSystemUiVisibility(systemUiVisibility);
+    }
     /**
      * 设置Flyme4+的darkMode,darkMode时候字体颜色及icon变黑
      * http://open-wiki.flyme.cn/index.php?title=Flyme%E7%B3%BB%E7%BB%9FAPI
