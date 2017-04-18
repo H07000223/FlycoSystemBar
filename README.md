@@ -14,7 +14,7 @@ A Helper for SystemBar include StatusBar and NavigationBar.
 |:---:|:---:|:---:|:---:|
 |<img src="https://github.com/H07000223/FlycoSystemBar/blob/master/art/darkmode_4.4.png" width="500">|<img src="https://github.com/H07000223/FlycoSystemBar/blob/master/art/darkmode_6.0.png" width="500">|<img src="https://github.com/H07000223/FlycoSystemBar/blob/master/art/darkmode_miui.png" width="500">|<img src="https://github.com/H07000223/FlycoSystemBar/blob/master/art/darkmode_flyme.png" width="500">|
 
-##Gradle
+## Gradle
 
 ```groovy
 dependencies{
@@ -26,6 +26,6 @@ dependencies{
 ## Todo
 NavigationBar
 
-##Thanks
+## Thanks
 *   [SystemBarTint](https://github.com/jgilfelt/SystemBarTint)
 *   [StatusBarUtil](https://github.com/laobie/StatusBarUtil)
